@@ -6,11 +6,11 @@ using TMPro;
 
 public class Jogo : MonoBehaviour
 {
-    private TextMeshPro textDinheiro;
+    //private TextMeshPro textDinheiro;
     public void inicio()
     {
-        textDinheiro = GetComponent<TextMeshPro>();
-        double valorInicial = 1000;
-        textDinheiro = valorInicial.ToString();
+      //  textDinheiro = GetComponent<TextMeshPro>();
+        //double valorInicial = 1000;
+      //  textDinheiro = valorInicial.ToString();
     }
 }
