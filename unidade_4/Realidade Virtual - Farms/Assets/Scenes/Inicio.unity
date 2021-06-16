@@ -352,6 +352,10 @@ GameObject:
   - component: {fileID: 384694182}
   - component: {fileID: 384694181}
   - component: {fileID: 384694180}
+<<<<<<< HEAD
+  - component: {fileID: 384694184}
+=======
+>>>>>>> b7b886bcb19988835780721d0f5c7682a079a0f1
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -443,6 +447,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+<<<<<<< HEAD
+--- !u!114 &384694184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 384694179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9af2184aa91840a469611be5d0a3b32c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+=======
+>>>>>>> b7b886bcb19988835780721d0f5c7682a079a0f1
 --- !u!1 &947858659
 GameObject:
   m_ObjectHideFlags: 0
@@ -780,7 +799,23 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1413789111}
   m_OnClick:
     m_PersistentCalls:
+<<<<<<< HEAD
+      m_Calls:
+      - m_Target: {fileID: 384694184}
+        m_TargetAssemblyTypeName: ScriptMudarCena, Assembly-CSharp
+        m_MethodName: Sair
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+=======
       m_Calls: []
+>>>>>>> b7b886bcb19988835780721d0f5c7682a079a0f1
 --- !u!114 &1413789111
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1102,16 +1137,27 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+<<<<<<< HEAD
+      - m_Target: {fileID: 384694184}
+        m_TargetAssemblyTypeName: ScriptMudarCena, Assembly-CSharp
+        m_MethodName: ScriptMudar
+        m_Mode: 1
+=======
       - m_Target: {fileID: 11500000, guid: c429d1f0f8dfe4a4fa1bdd69f5c45b94, type: 3}
         m_TargetAssemblyTypeName: UnityEngine.Object, UnityEngine
         m_MethodName: set_name
         m_Mode: 5
+>>>>>>> b7b886bcb19988835780721d0f5c7682a079a0f1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
+<<<<<<< HEAD
+          m_StringArgument: ScriptMudar()
+=======
           m_StringArgument: 
+>>>>>>> b7b886bcb19988835780721d0f5c7682a079a0f1
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1802845579
