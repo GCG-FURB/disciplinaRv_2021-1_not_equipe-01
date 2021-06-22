@@ -16,6 +16,9 @@ public class Jogo : MonoBehaviour
     public GameObject Vaca2;
     public GameObject Vaca3;
     public GameObject Vaca4;
+    //public GameObject Plantacao;    
+    public int numeroPlantacao = 32;
+    
     void Start()
     {
 
@@ -30,6 +33,7 @@ public class Jogo : MonoBehaviour
        GameObject.Find("Vaca3").transform.localScale = new Vector3(0, 0, 0);
        GameObject.Find("Vaca2").transform.localScale = new Vector3(0, 0, 0);
        GameObject.Find("Vaca").transform.localScale = new Vector3(0, 0, 0);*/
+       
        GameObject.Find("TomatoPlant_01 (1)").transform.localScale = new Vector3(0, 0, 0);
        GameObject.Find("TomatoPlant_01 (2)").transform.localScale = new Vector3(0, 0, 0);
        GameObject.Find("TomatoPlant_01 (3)").transform.localScale = new Vector3(0, 0, 0);
@@ -64,15 +68,17 @@ public class Jogo : MonoBehaviour
        GameObject.Find("TomatoPlant_01 (32)").transform.localScale = new Vector3(0, 0, 0);
 
     }
+
     void Update()
     {
     }
-    private void OnTriggerEnter(Collider other)
+    
+    private void OnTriggerEnter(Collider other) //colisÃ£o 
     {
         Debug.Log("Entrou");
         if (gameObject.tag == "CenaPrincipal")
         {
-            Debug.Log("Teste  de comparação");
+            Debug.Log("Teste  de comparacao");
             if (other.gameObject.CompareTag("Animal"))
             {
                 Debug.Log("Vaca comprada");
@@ -82,9 +88,10 @@ public class Jogo : MonoBehaviour
                 textDinheiro.SetText(dinheiro.ToString());
             }
         }
+
         if (gameObject.tag == "Animal")
         {
-            Debug.Log("Teste  de comparação");
+            Debug.Log("Teste  de comparacao");
             if (other.gameObject.CompareTag("CenaPrincipal"))
             {
                 Debug.Log("Vaca comprada");
@@ -94,5 +101,35 @@ public class Jogo : MonoBehaviour
                 textDinheiro.SetText(dinheiro.ToString());
             }
         }
+
+        todasPlantacoes();
+               
     }
+ 
+    public void todasPlantacoes(){
+        int valorTotal = platna * numeroPlantacao;
+
+        if (dinheiro < valorTotal)
+        {
+            MessageBox.Show("Dinheiro Insuficiente");
+        }else{
+            for (int i = 1; i <= numeroPlantacao; i++)
+            {       
+                if (gameObject.tag == "Plantacao")
+                {
+                    Debug.Log("Teste de comparacao");
+                    if (other.gameObject.CompareTag("CenaPrincipal"))
+                    {
+                        Debug.Log("Plantacao comprada");
+                        GameObject.Find("TomatoPlant_01 (".i.")").transform.localScale = new Vector3(10, 10, 10);
+                        dinheiro -= planta;
+                        Debug.Log(dinheiro);
+                        textDinheiro.SetText(dinheiro.ToString());
+                    }
+                }
+            }
+        }
+    }
+
+
 }
