@@ -91,19 +91,26 @@ public class Jogo : MonoBehaviour
 
         if (gameObject.tag == "Animal")
         {
-            Debug.Log("Teste  de comparacao");
-            if (other.gameObject.CompareTag("CenaPrincipal"))
+            if (dinheiro < animal)
             {
-                Debug.Log("Vaca comprada");
-                GameObject.Find("Vaca").transform.localScale = new Vector3(10, 10, 10);
-                dinheiro = dinheiro - animal;
-                Debug.Log(dinheiro);
-                textDinheiro.SetText(dinheiro.ToString());
+                MessageBox.Show("Dinheiro Insuficiente");
+            }else{
+                Debug.Log("Teste  de comparacao");
+                if (other.gameObject.CompareTag("CenaPrincipal"))
+                {
+                    Debug.Log("Vaca comprada");
+                    GameObject.Find("Vaca").transform.localScale = new Vector3(10, 10, 10);
+                    dinheiro = dinheiro - animal;
+                    Debug.Log(dinheiro);
+                    textDinheiro.SetText(dinheiro.ToString());
+                }
             }
         }
 
-        todasPlantacoes();
-               
+        if (gameObject.tag == "Plantacao")
+        {
+            todasPlantacoes();
+        }
     }
  
     public void todasPlantacoes(){
@@ -114,18 +121,15 @@ public class Jogo : MonoBehaviour
             MessageBox.Show("Dinheiro Insuficiente");
         }else{
             for (int i = 1; i <= numeroPlantacao; i++)
-            {       
-                if (gameObject.tag == "Plantacao")
+            {              
+                Debug.Log("Teste de comparacao");
+                if (other.gameObject.CompareTag("CenaPrincipal"))
                 {
-                    Debug.Log("Teste de comparacao");
-                    if (other.gameObject.CompareTag("CenaPrincipal"))
-                    {
-                        Debug.Log("Plantacao comprada");
-                        GameObject.Find("TomatoPlant_01 (".i.")").transform.localScale = new Vector3(10, 10, 10);
-                        dinheiro -= planta;
-                        Debug.Log(dinheiro);
-                        textDinheiro.SetText(dinheiro.ToString());
-                    }
+                    Debug.Log("Plantacao comprada");
+                    GameObject.Find("TomatoPlant_01 (".i.")").transform.localScale = new Vector3(10, 10, 10);
+                    dinheiro -= planta;
+                    Debug.Log(dinheiro);
+                    textDinheiro.SetText(dinheiro.ToString());
                 }
             }
         }
