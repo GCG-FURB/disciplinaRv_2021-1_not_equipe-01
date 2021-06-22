@@ -47,4 +47,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Inicio.unity
     guid: 388b4915e1d09a04cbb2f50fa8ceeff8
+  - enabled: 1
+    path: Assets/Scenes/JogoCena.unity
+    guid: 8891cb6d9f995314585a0a882cad330e
   m_configObjects: {}
