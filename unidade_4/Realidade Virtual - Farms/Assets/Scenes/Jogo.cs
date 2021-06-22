@@ -93,7 +93,7 @@ public class Jogo : MonoBehaviour
         {
             if (dinheiro < animal)
             {
-                MessageBox.Show("Dinheiro Insuficiente");
+                //MessageBox.Show("Dinheiro Insuficiente");
             }else{
                 Debug.Log("Teste  de comparacao");
                 if (other.gameObject.CompareTag("CenaPrincipal"))
@@ -109,16 +109,16 @@ public class Jogo : MonoBehaviour
 
         if (gameObject.tag == "Plantacao")
         {
-            todasPlantacoes();
+            todasPlantacoes(other.gameObject);
         }
     }
  
-    public void todasPlantacoes(){
-        int valorTotal = platna * numeroPlantacao;
+    public void todasPlantacoes(GameObject other){
+        double valorTotal = planta * numeroPlantacao;
 
         if (dinheiro < valorTotal)
         {
-            MessageBox.Show("Dinheiro Insuficiente");
+            //MessageBox.Show("Dinheiro Insuficiente");
         }else{
             for (int i = 1; i <= numeroPlantacao; i++)
             {              
@@ -126,7 +126,7 @@ public class Jogo : MonoBehaviour
                 if (other.gameObject.CompareTag("CenaPrincipal"))
                 {
                     Debug.Log("Plantacao comprada");
-                    GameObject.Find("TomatoPlant_01 (".i.")").transform.localScale = new Vector3(10, 10, 10);
+                    GameObject.Find("TomatoPlant_01 (" + i + ")").transform.localScale = new Vector3(10, 10, 10);
                     dinheiro -= planta;
                     Debug.Log(dinheiro);
                     textDinheiro.SetText(dinheiro.ToString());
