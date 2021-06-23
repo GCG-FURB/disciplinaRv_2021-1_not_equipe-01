@@ -21,11 +21,13 @@ public class Jogo : MonoBehaviour
     public GameObject Vaca4;*/
     //public GameObject Plantacao;    
     public int numeroPlantacao = 32;
+    private int vaca = 4;
     private int dia = 1;
     private int cont = 1;
     private int qtdPlantacao = 0;
     private int qtdVaca = 0;
     public TextMeshPro textDia;
+    private int resto;
 
     void Start()
     {
@@ -86,8 +88,7 @@ public class Jogo : MonoBehaviour
             dia++;
             textDia.SetText(dia.ToString());
             cont = 0;
-
-            if(dia % 10){
+            if(dia % 10 == 0){
                 double qtdVendaVaca = 0;
                 double qtdVendaPlantacao = 0;
                 double qtdTotal = 0;
@@ -101,6 +102,19 @@ public class Jogo : MonoBehaviour
                 qtdTotal += dinheiro; //300 + 500
 
                 textDinheiro.SetText(qtdTotal.ToString()); // 800 
+                message = "Compre";
+                textMessage.SetText(message.ToString());
+                GameObject.Find("Vaca").transform.localScale = new Vector3(0, 0, 0);
+                GameObject.Find("Vaca2").transform.localScale = new Vector3(0, 0, 0);
+                GameObject.Find("Vaca3").transform.localScale = new Vector3(0, 0, 0);
+                GameObject.Find("Vaca4").transform.localScale = new Vector3(0, 0, 0);
+                qtdVaca = 0;
+                qtdPlantacao = 0;
+
+                for (int i = 1; i <= numeroPlantacao; i++)
+                {
+                    GameObject.Find("TomatoPlant_01 (" + i + ")").transform.localScale = new Vector3(0, 0, 0);
+                }
             } 
         }
     }
@@ -122,17 +136,26 @@ public class Jogo : MonoBehaviour
  
     public void todasVacas(GameObject other){    
         Debug.Log("Teste  de comparacao");
-        if (other.gameObject.CompareTag("Animal"))
+        double valorTotal = vaca  * animal;
+        if (dinheiro < valorTotal)
         {
-            Debug.Log("Vaca comprada");
-            GameObject.Find("Vaca").transform.localScale = new Vector3(10, 10,10);
-            GameObject.Find("Vaca2").transform.localScale = new Vector3(10, 10,10);
-            GameObject.Find("Vaca3").transform.localScale = new Vector3(10, 10,10);
-            GameObject.Find("Vaca4").transform.localScale = new Vector3(10, 10,10);
-            dinheiro = dinheiro - animal;
-            Debug.Log(dinheiro);
-            textDinheiro.SetText(dinheiro.ToString());
-            qtdVaca = 4;
+            message = "Dinheiro Insuficiente";
+            textMessage.SetText(message.ToString());
+        }
+        else
+        {
+            if (other.gameObject.CompareTag("Animal"))
+            {
+                Debug.Log("Vaca comprada");
+                GameObject.Find("Vaca").transform.localScale = new Vector3(1, 1, 1);
+                GameObject.Find("Vaca2").transform.localScale = new Vector3(1, 1, 1);
+                GameObject.Find("Vaca3").transform.localScale = new Vector3(1, 1, 1);
+                GameObject.Find("Vaca4").transform.localScale = new Vector3(1, 1, 1);
+                dinheiro = dinheiro - animal;
+                Debug.Log(dinheiro);
+                textDinheiro.SetText(dinheiro.ToString());
+                qtdVaca = 4;
+            }
         }
     }
 
@@ -151,7 +174,7 @@ public class Jogo : MonoBehaviour
                 if (other.gameObject.CompareTag("Plantacao"))
                 {
                     Debug.Log("Plantacao comprada");
-                    GameObject.Find("TomatoPlant_01 (" + i + ")").transform.localScale = new Vector3(10, 10, 10);
+                    GameObject.Find("TomatoPlant_01 (" + i + ")").transform.localScale = new Vector3(3, 3, 3);
                     dinheiro -= planta;
                     Debug.Log(dinheiro);
                     textDinheiro.SetText(dinheiro.ToString());
