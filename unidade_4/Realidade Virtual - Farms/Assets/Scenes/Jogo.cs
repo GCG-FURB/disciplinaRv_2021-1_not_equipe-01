@@ -11,7 +11,6 @@ public class Jogo : MonoBehaviour
     private string StringDinheiro;
     private double animal = 100;
     private double planta = 50;
-    private int dia = 1;
     public TextMeshPro textMessage;
     private string message = "Bem Vindo";
     /*public GameObject Vaca;
@@ -20,22 +19,26 @@ public class Jogo : MonoBehaviour
     public GameObject Vaca4;*/
     //public GameObject Plantacao;    
     public int numeroPlantacao = 32;
-    
+    private int dia = 1;
+    private int cont = 1;
+    public TextMeshPro textDia;
+
     void Start()
     {
 
        textDinheiro.SetText(dinheiro.ToString());
        textMessage.SetText(message.ToString());
+       textDia.SetText(dia.ToString());
         /*Vaca.SetActive(false);
         Vaca2.SetActive(false); 
         Vaca3.SetActive(false);
         Vaca4.SetActive(false);*/
 
-       GameObject.Find("Vaca4").transform.localScale = new Vector3(0, 0, 0);
+        GameObject.Find("Vaca4").transform.localScale = new Vector3(0, 0, 0);
        GameObject.Find("Vaca3").transform.localScale = new Vector3(0, 0, 0);
        GameObject.Find("Vaca2").transform.localScale = new Vector3(0, 0, 0);
        GameObject.Find("Vaca").transform.localScale = new Vector3(0, 0, 0);
-        GameObject.Find("Tomate").transform.localScale = new Vector3(0, 0, 0);
+        //GameObject.Find("Tomate").transform.localScale = new Vector3(0, 0, 0);
         GameObject.Find("TomatoPlant_01 (1)").transform.localScale = new Vector3(0, 0, 0);
        GameObject.Find("TomatoPlant_01 (2)").transform.localScale = new Vector3(0, 0, 0);
        GameObject.Find("TomatoPlant_01 (3)").transform.localScale = new Vector3(0, 0, 0);
@@ -73,6 +76,13 @@ public class Jogo : MonoBehaviour
 
     void Update()
     {
+        dia += 1;
+        if (dia == 1000)
+        {
+            cont++;
+            textDia.SetText(cont.ToString());
+            dia = 0;
+        }
     }
     
     private void OnTriggerEnter(Collider other) //colisão 
