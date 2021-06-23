@@ -6,35 +6,37 @@ using TMPro;
 
 public class Jogo : MonoBehaviour
 {
-    private TextMeshPro textDinheiro;
-    private double dinheiro = 1000;
+    public TextMeshPro textDinheiro;
+    private double dinheiro = 2000;
     private string StringDinheiro;
     private double animal = 100;
     private double planta = 50;
     private int dia = 1;
-    public GameObject Vaca;
+    public TextMeshPro textMessage;
+    private string message = "Bem Vindo";
+    /*public GameObject Vaca;
     public GameObject Vaca2;
     public GameObject Vaca3;
-    public GameObject Vaca4;
+    public GameObject Vaca4;*/
     //public GameObject Plantacao;    
     public int numeroPlantacao = 32;
     
     void Start()
     {
 
-       textDinheiro = GetComponent<TextMeshPro>(); 
        textDinheiro.SetText(dinheiro.ToString());
-        Vaca.SetActive(false);
+       textMessage.SetText(message.ToString());
+        /*Vaca.SetActive(false);
         Vaca2.SetActive(false); 
         Vaca3.SetActive(false);
-        Vaca4.SetActive(false);
+        Vaca4.SetActive(false);*/
 
-       /*GameObject.Find("Vaca4").transform.localScale = new Vector3(0, 0, 0);
+       GameObject.Find("Vaca4").transform.localScale = new Vector3(0, 0, 0);
        GameObject.Find("Vaca3").transform.localScale = new Vector3(0, 0, 0);
        GameObject.Find("Vaca2").transform.localScale = new Vector3(0, 0, 0);
-       GameObject.Find("Vaca").transform.localScale = new Vector3(0, 0, 0);*/
-       
-       GameObject.Find("TomatoPlant_01 (1)").transform.localScale = new Vector3(0, 0, 0);
+       GameObject.Find("Vaca").transform.localScale = new Vector3(0, 0, 0);
+        GameObject.Find("Tomate").transform.localScale = new Vector3(0, 0, 0);
+        GameObject.Find("TomatoPlant_01 (1)").transform.localScale = new Vector3(0, 0, 0);
        GameObject.Find("TomatoPlant_01 (2)").transform.localScale = new Vector3(0, 0, 0);
        GameObject.Find("TomatoPlant_01 (3)").transform.localScale = new Vector3(0, 0, 0);
        GameObject.Find("TomatoPlant_01 (4)").transform.localScale = new Vector3(0, 0, 0);
@@ -93,7 +95,8 @@ public class Jogo : MonoBehaviour
         {
             if (dinheiro < animal)
             {
-                //MessageBox.Show("Dinheiro Insuficiente");
+                message = "Dinheiro Insuficiente";
+                textMessage.SetText(message.ToString());
             }else{
                 Debug.Log("Teste  de comparacao");
                 if (other.gameObject.CompareTag("CenaPrincipal"))
@@ -118,8 +121,10 @@ public class Jogo : MonoBehaviour
 
         if (dinheiro < valorTotal)
         {
-            //MessageBox.Show("Dinheiro Insuficiente");
-        }else{
+            message = "Dinheiro Insuficiente";
+            textMessage.SetText(message.ToString());
+        }
+        else{
             for (int i = 1; i <= numeroPlantacao; i++)
             {              
                 Debug.Log("Teste de comparacao");
@@ -134,6 +139,6 @@ public class Jogo : MonoBehaviour
             }
         }
     }
-
+    
 
 }
