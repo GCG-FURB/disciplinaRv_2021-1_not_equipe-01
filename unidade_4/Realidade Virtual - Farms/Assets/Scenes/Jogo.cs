@@ -88,6 +88,8 @@ public class Jogo : MonoBehaviour
             dia++;
             textDia.SetText(dia.ToString());
             cont = 0;
+            message = "Compre";
+            textMessage.SetText(message.ToString());   
             if(dia % 10 == 0){
                 double qtdVendaVaca = 0;
                 double qtdVendaPlantacao = 0;
@@ -102,8 +104,6 @@ public class Jogo : MonoBehaviour
                 qtdTotal += dinheiro; //300 + 500
 
                 textDinheiro.SetText(qtdTotal.ToString()); // 800 
-                message = "Compre";
-                textMessage.SetText(message.ToString());
                 GameObject.Find("Vaca").transform.localScale = new Vector3(0, 0, 0);
                 GameObject.Find("Vaca2").transform.localScale = new Vector3(0, 0, 0);
                 GameObject.Find("Vaca3").transform.localScale = new Vector3(0, 0, 0);
