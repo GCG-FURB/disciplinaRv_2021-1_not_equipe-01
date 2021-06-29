@@ -28,6 +28,43 @@ public class Jogo : MonoBehaviour
     private int qtdVaca = 0;
     public TextMeshPro textDia;
     private int resto;
+    
+    private int precoAgua = 10;
+    private int precoComida = 20;
+    private int precoAdubo = 15;
+    private int qtdAgua = 0;
+    private int qtdComida = 0;
+    private int qtdAdubo = 0;
+    
+    
+
+    public void comprarAgua(){
+        double total = 0;
+        total = precoAgua * vaca;
+        dinheiro -= total;
+        textDinheiro.SetText(dinheiro.ToString());
+        qtdAgua = 4;
+    }
+
+    public void comprarComida(){
+        double total = 0;
+        total = precoComida * vaca;
+        dinheiro -= total; 
+        textDinheiro.SetText(dinheiro.ToString());
+        qtdComida = 4;
+    }
+
+    public void comprarAdubo(){
+        double total = 0;
+        total = precoAdubo * numeroPlantacao;
+        dinheiro -= total;
+        textDinheiro.SetText(dinheiro.ToString());
+        qtdAdubo = 32;
+    }
+
+
+    
+
 
     void Start()
     {
@@ -82,43 +119,67 @@ public class Jogo : MonoBehaviour
 
     void Update()
     {
-        cont += 1;
+        cont += 1;       
         if (cont == 1000)
         {
             dia++;
             textDia.SetText(dia.ToString());
             cont = 0;
             message = "Compre";
-            textMessage.SetText(message.ToString());   
-            if(dia % 10 == 0){
-                double qtdVendaVaca = 0;
-                double qtdVendaPlantacao = 0;
-                double qtdTotal = 0;
+            textMessage.SetText(message.ToString()); 
 
-                qtdVendaPlantacao = qtdPlantacao * plantaVenda; //0
-
-                qtdVendaVaca = qtdVaca * animalVenda;  //300
-
-                qtdTotal = qtdVendaPlantacao + qtdVendaVaca; //300
-
-                qtdTotal += dinheiro; //300 + 500
-
-                textDinheiro.SetText(qtdTotal.ToString()); // 800 
-                GameObject.Find("Vaca").transform.localScale = new Vector3(0, 0, 0);
-                GameObject.Find("Vaca2").transform.localScale = new Vector3(0, 0, 0);
-                GameObject.Find("Vaca3").transform.localScale = new Vector3(0, 0, 0);
-                GameObject.Find("Vaca4").transform.localScale = new Vector3(0, 0, 0);
-                qtdVaca = 0;
-                qtdPlantacao = 0;
-
-                for (int i = 1; i <= numeroPlantacao; i++)
-                {
-                    GameObject.Find("TomatoPlant_01 (" + i + ")").transform.localScale = new Vector3(0, 0, 0);
+            // Vender Vaca
+            if(qtdAgua == 4 && qtdComida == 4){
+                if(dia % 10 == 0){
+                    vendaVaca();    
+                }    
+            }else{
+                if(dia % 20 == 0){
+                    vendaVaca();
                 }
-            } 
+            }
+
+            // Venda Plantação
+            if (qtdAdubo == 32){
+                if(dia % 10 == 0){
+                    vendaPlantacao();    
+                }
+            }else{
+                if(dia % 20 == 0){
+                    vendaPlantacao();
+                }
+            }
+             
         }
     }
     
+    public void vendaPlantacao(){
+        double qtdVendaPlantacao = 0;
+        double qtdTotal = 0;
+        qtdVendaPlantacao = qtdPlantacao * plantaVenda;
+        qtdTotal = qtdVendaPlantacao + dinheiro;
+        textDinheiro.SetText(qtdTotal.ToString());
+        for (int i = 1; i <= numeroPlantacao; i++)
+        {
+            GameObject.Find("TomatoPlant_01 (" + i + ")").transform.localScale = new Vector3(0, 0, 0);
+        }
+        qtdPlantacao = 0;
+    }
+
+    public void vendaVaca(){
+        double qtdVendaVaca = 0;
+        double qtdTotal = 0;
+        qtdVendaVaca = qtdVaca * animalVenda;
+        qtdTotal = qtdVendaVaca + dinheiro;
+        textDinheiro.SetText(qtdTotal.ToString());
+        GameObject.Find("Vaca").transform.localScale = new Vector3(0, 0, 0);
+        GameObject.Find("Vaca2").transform.localScale = new Vector3(0, 0, 0);
+        GameObject.Find("Vaca3").transform.localScale = new Vector3(0, 0, 0);
+        GameObject.Find("Vaca4").transform.localScale = new Vector3(0, 0, 0);
+        qtdVaca = 0;
+    }
+
+
     private void OnTriggerEnter(Collider other) //colisão 
     {
         Debug.Log("Entrou");
