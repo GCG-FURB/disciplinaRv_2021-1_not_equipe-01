@@ -7,7 +7,7 @@ using TMPro;
 public class Jogo : MonoBehaviour
 {
     public TextMeshPro textDinheiro;
-    private double dinheiro = 2000;
+    private double dinheiro = 5000;
     private string StringDinheiro;
     private double animal = 100;
     private double planta = 50;
@@ -35,31 +35,60 @@ public class Jogo : MonoBehaviour
     private int qtdAgua = 0;
     private int qtdComida = 0;
     private int qtdAdubo = 0;
+    private int veriAni = 0;
+    private int veriPla = 0;
     
     
 
     public void comprarAgua(){
-        double total = 0;
-        total = precoAgua * vaca;
-        dinheiro -= total;
-        textDinheiro.SetText(dinheiro.ToString());
-        qtdAgua = 4;
+        if (veriAni == 1) {
+            double total = 0;
+            total = precoAgua * vaca;
+            dinheiro -= total;
+            textDinheiro.SetText(dinheiro.ToString());
+            qtdAgua = 4;
+            message = "Comprou água";
+            textMessage.SetText(message.ToString());
+        }
+        else
+        {
+            message = "Você não tem animal";
+            textMessage.SetText(message.ToString());
+        }
     }
 
     public void comprarComida(){
-        double total = 0;
-        total = precoComida * vaca;
-        dinheiro -= total; 
-        textDinheiro.SetText(dinheiro.ToString());
-        qtdComida = 4;
+        if (veriAni == 1) {
+            double total = 0;
+            total = precoComida * vaca;
+            dinheiro -= total;
+            textDinheiro.SetText(dinheiro.ToString());
+            qtdComida = 4;
+            message = "Comprou comida";
+            textMessage.SetText(message.ToString());
+        }
+        else
+        {
+            message = "Você não tem animal";
+            textMessage.SetText(message.ToString());
+        }
     }
 
     public void comprarAdubo(){
-        double total = 0;
-        total = precoAdubo * numeroPlantacao;
-        dinheiro -= total;
-        textDinheiro.SetText(dinheiro.ToString());
-        qtdAdubo = 32;
+        if (veriPla == 1) {
+            double total = 0;
+            total = precoAdubo * numeroPlantacao;
+            dinheiro -= total;
+            textDinheiro.SetText(dinheiro.ToString());
+            qtdAdubo = 32;
+            message = "Comprou adubo";
+            textMessage.SetText(message.ToString());
+        }
+        else
+        {
+            message = "Você não tem plantação";
+            textMessage.SetText(message.ToString());
+        }
     }
 
 
@@ -120,7 +149,7 @@ public class Jogo : MonoBehaviour
     void Update()
     {
         cont += 1;       
-        if (cont == 1000)
+        if (cont == 500)
         {
             dia++;
             textDia.SetText(dia.ToString());
@@ -164,6 +193,7 @@ public class Jogo : MonoBehaviour
             GameObject.Find("TomatoPlant_01 (" + i + ")").transform.localScale = new Vector3(0, 0, 0);
         }
         qtdPlantacao = 0;
+        veriPla = 0;
     }
 
     public void vendaVaca(){
@@ -177,6 +207,7 @@ public class Jogo : MonoBehaviour
         GameObject.Find("Vaca3").transform.localScale = new Vector3(0, 0, 0);
         GameObject.Find("Vaca4").transform.localScale = new Vector3(0, 0, 0);
         qtdVaca = 0;
+        veriAni = 0;
     }
 
 
@@ -207,15 +238,18 @@ public class Jogo : MonoBehaviour
         {
             if (other.gameObject.CompareTag("Animal"))
             {
-                Debug.Log("Vaca comprada");
-                GameObject.Find("Vaca").transform.localScale = new Vector3(1, 1, 1);
-                GameObject.Find("Vaca2").transform.localScale = new Vector3(1, 1, 1);
-                GameObject.Find("Vaca3").transform.localScale = new Vector3(1, 1, 1);
-                GameObject.Find("Vaca4").transform.localScale = new Vector3(1, 1, 1);
-                dinheiro = dinheiro - animal;
-                Debug.Log(dinheiro);
-                textDinheiro.SetText(dinheiro.ToString());
-                qtdVaca = 4;
+                if (veriAni == 0) {
+                    Debug.Log("Vaca comprada");
+                    GameObject.Find("Vaca").transform.localScale = new Vector3(1, 1, 1);
+                    GameObject.Find("Vaca2").transform.localScale = new Vector3(1, 1, 1);
+                    GameObject.Find("Vaca3").transform.localScale = new Vector3(1, 1, 1);
+                    GameObject.Find("Vaca4").transform.localScale = new Vector3(1, 1, 1);
+                    dinheiro = dinheiro - animal;
+                    Debug.Log(dinheiro);
+                    textDinheiro.SetText(dinheiro.ToString());
+                    qtdVaca = 4;
+                    veriAni = 1;
+                }
             }
         }
     }
@@ -234,14 +268,18 @@ public class Jogo : MonoBehaviour
                 Debug.Log("Teste de comparacao");
                 if (other.gameObject.CompareTag("Plantacao"))
                 {
-                    Debug.Log("Plantacao comprada");
-                    GameObject.Find("TomatoPlant_01 (" + i + ")").transform.localScale = new Vector3(3, 3, 3);
-                    dinheiro -= planta;
-                    Debug.Log(dinheiro);
-                    textDinheiro.SetText(dinheiro.ToString());
-                    qtdPlantacao++;
+                    if (veriPla == 0) {
+                        Debug.Log("Plantacao comprada");
+                        GameObject.Find("TomatoPlant_01 (" + i + ")").transform.localScale = new Vector3(3, 3, 3);
+                        dinheiro -= planta;
+                        Debug.Log(dinheiro);
+                        textDinheiro.SetText(dinheiro.ToString());
+                        qtdPlantacao++;
+                        
+                    }
                 }
             }
+            veriPla = 1;
         }
     }
     

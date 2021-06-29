@@ -10,6 +10,10 @@ public class ScriptMudarCena : MonoBehaviour
     {
         SceneManager.LoadScene("Jogo");
     }
+    public void ScriptAbout()
+    {
+        SceneManager.LoadScene("About");
+    }
     public void Sair()
     {
         Application.Quit();

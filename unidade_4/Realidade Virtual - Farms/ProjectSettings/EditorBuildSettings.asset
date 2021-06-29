@@ -50,4 +50,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/JogoCena.unity
     guid: 8891cb6d9f995314585a0a882cad330e
+  - enabled: 1
+    path: Assets/Scenes/About.unity
+    guid: f640419c8a2799c4f9608d7cbdf89184
   m_configObjects: {}
